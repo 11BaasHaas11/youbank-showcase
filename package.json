@@ -1,0 +1,23 @@
+{
+  "name": "corpapp-dist-youbank",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corpapp/corpapp-dist-youbank.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corpapp/corpapp-dist-youbank/issues"
+  },
+  "homepage": "https://github.com/corpapp/corpapp-dist-youbank",
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "corpapp-grunt" : "git+https://github.com/corpapp/corpapp-grunt.git#master"
+  }
+}
