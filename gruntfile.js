@@ -6,6 +6,7 @@ module.exports = function(grunt) {
 		'jshint:all', 
 		'concat:all',
 		'concat_css:all',
+		'htmlbuild',
 		'connect',
 		'watch'
 	]);
