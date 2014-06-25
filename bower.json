@@ -1,0 +1,13 @@
+{
+  "name": "corpapp-dist-youbank",
+  "version": "0.0.1",
+  "dependencies": {
+    "fullpage.js": "~2.0.7"
+  },
+  "devDependencies": {
+    "angular": "1.2.18",
+    "angular-route": "1.2.18",
+    "angular-mocks": "1.2.18",
+    "bootstrap": "3.1.1"
+  }
+}
