@@ -1,7 +1,8 @@
-angular.module("corpapp.module.fullpage", [])
-
-.run(function(){
-	$(document).ready(function() {
-	    $('#fullpage').fullpage();
-	});
-});
+angular
+    .module("youbank-showcase", [
+    ])
+    .run(function(){
+        $(document).ready(function() {
+            $('#fullpage').fullpage();
+        });
+    });

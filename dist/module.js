@@ -1,23 +1,13 @@
-angular.module('youbankApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ngRoute'
-  ])
-  .config(function($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
-angular.module("corpapp.module.fullpage", [])
+angular
+    .module("youbank-showcase", [
+    ])
+    .run(function(){
+        $(document).ready(function() {
+            $('#fullpage').fullpage();
+        });
+    });
 
-.run(function(){
-	$(document).ready(function() {
-	    $('#fullpage').fullpage();
-	});
+angular.module('youbank-showcase').controller('IndexCtrl', function($scope, $location, $http) {
+
+    console.log('Wizard controller');
 });
