@@ -1,0 +1,148 @@
+<div class="loans-wizard" ng-controller="WizardCtrl">
+    <div ng-show="apierror" class="alert alert-warning">There was an error communicating with the PEGA API. Please try again.</div>
+    <wizard on-finish="finished()" template="views/wizardTemplate.html">
+        <wz-step title="1. Persoonlijke gegevens">
+            <h1>Persoonlijke gegevens</h1>
+
+            <form role="form">
+                <div class="col-sm-6 form-group">
+                    <label for="name">Naam</label>
+                    <input type="text" ng-model="user.name" ng-disabled="user.name != null" class="form-control" id="name" value="{{user.name}}">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="address">Adres</label>
+                    <input type="text" ng-model="user.address" ng-disabled="user.address != null" class="form-control" id="address" value="{{user.address}}">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="dateofbirth">Geboortedatum</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="input-group">
+                                <input id="dateofbirth" type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="user.dateofbirth" is-open="opened" min-date="minDate" max-date="'2015-01-01'" datepicker-options="dateOptions" init-date="'2000-01-01'" ng-required="true" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                            </p>
+                        </div>
+                    </div>
+                    <!--<input type="date" ng-model="user.dateofbirth" class="form-control" id="dateofbirth">-->
+                </div>
+                <div class="col-sm-6 form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="user.maritalstatus" ng-disabled="user.maritalstatus != null" ng-true-value="married">
+                            Married
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <button wz-next type="submit" class="btn btn-default btn-ing">Volgende</button>
+                </div>
+            </form>
+        </wz-step>
+        <wz-step title="2. Uw situatie">
+            <h1>Uw situatie</h1>
+
+            <form role="form">
+                <div class="col-sm-6 form-group">
+                    <label for="Huwelijksestaat">Huwelijkse staat</label>
+                    <select class="form-control"  ng-model="user.huwelijksestaat" id="Huwelijksestaat">
+                        <option value="alleenstaand">Alleenstaand</option>
+                        <option value="gescheiden">Gescheiden</option>
+                        <option value="scheiding">In scheiding</option>
+                        <option value="gemeenschapgoederen">Getrouwd / Partnerregistratie in gemeenschap van
+                            goederen
+                        </option>
+                        <option value="huwelijksevoorwaarden">Getrouwd / Partnerregistratie onder
+                            (huwelijkse)
+                            voorwaarden
+                        </option>
+                        <option value="metsamenlevingscontract">Samenwonend met samenlevingscontract
+                        </option>
+                        <option value="zondersamenlevingscontract">Samenwonend zonder samenlevingscontract
+                        </option>
+                        <option value="weduwe">Weduwe / weduwnaar</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="housingstatus">Woonsituatie</label>
+                    <select class="form-control" ng-model="user.housingstatus" id="housingstatus">
+                        <option value="bought">Ik ben huiseigenaar</option>
+                        <option value="rented">Ik huur een woning</option>
+                        <option value="libingin">Ik ben inwonend / thuiswonend</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="numberofchildren">Voor hoeveel kinderen bent u financieel
+                        verantwoordelijk?</label>
+                    <input type="number" ng-model="user.numberofchildren" class="form-control"
+                           id="numberofchildren" placeholder="0">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="monthlyincome">Netto maandinkomen (&euro;)</label>
+                    <input type="number" ng-model="user.monthlyincome" class="form-control"
+                           id="monthlyincome"
+                           placeholder="1700">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="requestedloanamount">Hoeveel wilt u lenen? (&euro;)</label>
+                    <input type="number" ng-model="user.requestedloanamount" class="form-control" id="requestedloanamount" placeholder="1000">
+                </div>
+                <div class="col-sm-12 form-group">
+                    <button wz-previous type="submit" class="btn btn-default btn-ing">Terug</button>
+                    <button type="submit" ng-click="getOptions()" class="btn btn-default btn-ing">
+                        Volgende
+                        <div ng-show="loading" class="loading-spinner"></div>
+                    </button>
+                </div>
+            </form>
+        </wz-step>
+        <wz-step title="3. Uw lening">
+            <h1>Uw lening</h1>
+
+            <p>Wij kunnen u de volgende lening(en) aanbieden:</p>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <tr>
+                        <th></th>
+                        <th>duration</th>
+                        <th>interestrate</th>
+                        <th>maxloanamount</th>
+                        <th>product</th>
+                    </tr>
+                    <tr ng-repeat="option in application.options | orderBy:'-proposal'"
+                        ng-click="application.selected=option"
+                        ng-class="{'selected': application.selected==option}">
+                        <td>{{option.proposal}}</td>
+                        <td>{{option.duration}}</td>
+                        <td>{{option.interestrate}}</td>
+                        <td>{{option.maxloanamount}}</td>
+                        <td>{{option.product}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-sm-12 form-group">
+                <button wz-previous type="submit" class="btn btn-default btn-ing">Terug</button>
+                <button ng-click="executeLoanApplication()" type="submit" class="btn btn-default btn-ing">
+                    Bevestigen
+                    <div ng-show="loading" class="loading-spinner"></div>
+                </button>
+            </div>
+        </wz-step>
+        <wz-step title="4. Voltooid">
+            <h1>Voltooid</h1>
+
+            <p>Uw aanvraag voor een {{user.selectedloan}} lening is in behandeling. U hoort spoedig van
+                ons. ( APPID-{{finalId}} )</p>
+
+            <div class="col-sm-12 form-group">
+                <button ng-click="goBack()" type="submit" class="btn btn-default btn-ing">Nog een lening
+                    aanvragen
+                </button>
+                <button wz-next type="submit" class="btn btn-default btn-ing">Afsluiten</button>
+            </div>
+        </wz-step>
+    </wizard>
+</div>
