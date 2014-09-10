@@ -10,7 +10,7 @@
     background-image: url("images/bg2.jpg");
 }
 .section3 {
-    background-image: url("images/bg3.jpg");
+    background-color: black;
 }
 .section4 {
     background-image: url("images/bg4.jpg");
@@ -98,4 +98,59 @@
 #menuBtn.active .asdf:after {
     content: "X";
     display: block;
+}
+
+.section3 .vertical {
+    overflow: hidden;
+}
+.vertical {
+    transition: 1s;
+    float:left;
+    transform: translate(200px,0px);
+    width: 25%;
+    height: 100%;
+    opacity: 0;
+}
+.active .vertical {
+    transform: translate(0px,0px);
+    margin-left: 0px;
+    opacity: 1;
+}
+
+
+
+.vertical div {
+    transition: width 1s;
+    background-size: cover;
+    background-position: center center;
+}
+
+.vertical:hover div:after {
+    z-index:-9999;
+}
+
+.vertical div:after{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    z-index: 2;
+    pointer-events: none;
+    background-image: -moz-radial-gradient( center, circle contain, rgba(0,0,0,0) 125px, rgba(0,0,0,.5) 250px );
+    background-image: -webkit-gradient( radial, 50% 50%, 125, 50% 50%, 250, from(rgba(0,0,0,0)), to(rgba(0,0,0,.5)) );
+}
+
+.vertical1 {
+    transition-delay: 200ms;
+}
+.vertical2 {
+    transition-delay: 300ms;
+}
+.vertical3 {
+    transition-delay: 400ms;
+}
+.vertical4 {
+    transition-delay: 500ms;
 }
