@@ -1,7 +1,7 @@
 .section {
     background-size: cover;
     background-position: center;
-    transition: background-image 0.5s ease-in-out,
+    transition: all 0.1s ease-out;
 }
 .section1 {
     background-image: url("images/bg1.jpg");
@@ -14,4 +14,88 @@
 }
 .section4 {
     background-image: url("images/bg4.jpg");
+}
+
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+
+.row-offcanvas {
+    position: relative;
+
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
+    -webkit-transition: all .25s ease-out;
+    -moz-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+}
+
+.row-offcanvas-right {
+    right: 0;
+}
+
+.row-offcanvas-left {
+    left: 0;
+}
+
+.row-offcanvas-right
+.sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+}
+
+.row-offcanvas-left
+.sidebar-offcanvas {
+    left: -20%; /* 6 columns */
+}
+
+.row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+}
+
+.row-offcanvas-left.active {
+    left: 20%; /* 6 columns */
+}
+
+.sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 20%; /* 6 columns */
+}
+
+
+#menuBtn {
+    position: fixed;
+    z-index: 9999999;
+    transition: all 0.2s ease-in;
+}
+
+.list-group-item {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn {
+    border-radius:                    0px;
+    -webkit-border-radius:            0px;
+    -moz-border-radius:               0px;
+}
+
+.list-group-item {
+    border-radius: 0 !important;
+}
+
+#menuBtn.active .asdf{
+    display: none;
+}
+
+#menuBtn.active .asdf:after {
+    content: "X";
+    display: block;
 }
