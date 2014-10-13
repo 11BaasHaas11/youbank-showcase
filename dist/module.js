@@ -6,9 +6,13 @@ angular
             $('#fullpage').fullpage({
                 paddingTop: '0px',
                 paddingBottom: '0px',
+                easing				: 'easeOutQuart',
+                scrollingSpeed		: 900,
+                touchSensitivity	: 15,
                 css3: false,
+                resize:false,
                 menu: '#menu',
-                anchors: ['slide1', 'slide2', 'slide3', 'slide4']
+                anchors: ['slide1', 'slide3', 'slide4']
             });
         });
 
@@ -16,6 +20,22 @@ angular
             $('[data-toggle=offcanvas]').click(function () {
                 $('.row-offcanvas').toggleClass('active');
                 $('#menuBtn').toggleClass('active');
+            });
+
+            $('#fade').cycle({
+                fx:      'scrollRight'
+            });
+
+            $('#fade2').cycle({
+                fx:      'scrollRight'
+            });
+
+            $('#launchPega').click(function(){
+                window.location.href = 'http://youb.cloudapp.net:8080';
+            });
+
+            $('#gotoSlide2').click(function() {
+                location.hash = "#" + 'slide3';
             });
         });
     });
